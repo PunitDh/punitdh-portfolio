@@ -65,13 +65,7 @@ const Contact = () => {
             </a>
           </article>
         </div>
-        <form
-          ref={form}
-          onSubmit={(e) => {
-            e.preventDefault();
-            notification.success("Message sent successfully!", 3000);
-          }}
-        >
+        <form ref={form} onSubmit={sendEmail}>
           <input
             type="text"
             name="name"
