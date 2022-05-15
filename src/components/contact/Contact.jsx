@@ -4,6 +4,8 @@ import { MdOutlineEmail } from "react-icons/md";
 import { RiMessengerLine } from "react-icons/ri";
 import { BsWhatsapp } from "react-icons/bs";
 import emailjs from "emailjs-com";
+import Notification from "../notification/Notification";
+import { useNotification } from "../../hooks";
 
 const {
   REACT_APP_EMAILJS_SERVICE_ID: serviceId,
@@ -13,22 +15,24 @@ const {
 
 const Contact = () => {
   const form = useRef();
+  const notification = useNotification();
 
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs
       .sendForm(serviceId, templateId, form.current, publicKey)
-      .then((response) => {
-        console.log("SUCCESS!", response.status, response.text);
+      .then(() => {
+        notification.success("Message sent successfully!");
         e.target.reset();
       })
-      .catch((err) => {
-        console.log("FAILED...", err);
+      .catch(() => {
+        notification.error("Oops! Something went wrong.");
       });
   };
 
   return (
     <section id="contact">
+      <Notification notification={notification} />
       <h5>Get In Touch</h5>
       <h2>Contact Me</h2>
       <div className="container contact__container">
@@ -61,7 +65,13 @@ const Contact = () => {
             </a>
           </article>
         </div>
-        <form ref={form} onSubmit={sendEmail}>
+        <form
+          ref={form}
+          onSubmit={(e) => {
+            e.preventDefault();
+            notification.success("Message sent successfully!", 3000);
+          }}
+        >
           <input
             type="text"
             name="name"

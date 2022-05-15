@@ -1,0 +1,68 @@
+.notification-container {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  width: 17rem;
+  height: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+  opacity: 0.9;
+  transition: var(--transition);
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  font-family: "Roboto", sans-serif;
+  user-select: none;
+  cursor: pointer;
+  transform: translateX(-50%);
+  padding: 1.5rem 0;
+}
+
+.notification-container.success {
+  background-color: lightgreen;
+  color: darkgreen;
+  border: 1px solid darkgreen;
+}
+
+.notification-container.error {
+  background-color: lightpink;
+  color: darkred;
+  border: 1px solid darkred;
+}
+
+.notification-container.warning {
+  background-color: lightyellow;
+  color: darkgoldenrod;
+  border: 1px solid darkgoldenrod;
+}
+
+.notification-container.hide {
+  display: none;
+}
+
+.notification-container.show {
+  display: flex;
+}
+
+.notification-icon {
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

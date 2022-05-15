@@ -22,6 +22,7 @@ const Nav = () => {
     <nav>
       {navLinks.map((link) => (
         <a
+          key={link.text}
           href={`#${link.text}`}
           title={link.title}
           onClick={handleActiveNav(`#${link.text}`)}
